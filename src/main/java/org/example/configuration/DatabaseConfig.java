@@ -16,9 +16,9 @@ public class DatabaseConfig {
         var hikariConfig = new HikariConfig();
         hikariConfig.setPoolName("postgresPool");
         hikariConfig.setDriverClassName("org.postgresql.Driver");
-        hikariConfig.setJdbcUrl("localhost:5432/testDb");
-        hikariConfig.setUsername("user");
-        hikariConfig.setPassword("password");
+        hikariConfig.setJdbcUrl("jdbc:postgresql://localhost:5432/Study_DB");
+        hikariConfig.setUsername("GodOmen");
+        hikariConfig.setPassword("GodOmen");
 
         hikariConfig.setMaximumPoolSize(10);
         hikariConfig.setMinimumIdle(2);
