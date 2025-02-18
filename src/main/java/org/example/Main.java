@@ -23,13 +23,14 @@ public class Main {
         System.out.println("Users: " + users);
 
         // Получение пользователя по ID
-        User user = userService.getUser(1L);
-        System.out.println("Found user: " + user);
+        if (!users.isEmpty()) {
+            User user = userService.getUser(users.get(0).id());
+            System.out.println("Found user: " + user);
 
-        // Удаление пользователя
-        userService.deleteUser(1L);
-        System.out.println("Users after deletion: " + userService.getAllUsers());
-
+            // Удаление пользователя
+            userService.deleteUser(users.get(0).id());
+            System.out.println("Users after deletion: " + userService.getAllUsers());
+        }
         context.close();
     }
 
