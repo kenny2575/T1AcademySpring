@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>T1Spring</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <postgres.driver.version>42.7.4</postgres.driver.version>
         <spring.context.version>6.2.1</spring.context.version>
-        <hikari.version>5.1.0</hikari.version>
         <jackson.dataformat.yml.version>2.16.1</jackson.dataformat.yml.version>
         <spring.starter.data.jpa>3.2.5</spring.starter.data.jpa>
     </properties>
@@ -32,12 +31,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${hikari.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-yaml</artifactId>
             <version>${jackson.dataformat.yml.version}</version>
@@ -47,6 +40,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>${spring.starter.data.jpa}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
         </dependency>
     </dependencies>
 </project>
