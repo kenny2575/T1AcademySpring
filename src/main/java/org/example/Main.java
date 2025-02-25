@@ -1,37 +1,26 @@
 package org.example;
 
 
-import org.example.service.UserService;
 import org.example.model.User;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.example.service.UserService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
-@ComponentScan
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-       AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        SpringApplication.run(Main.class, args);
+    }
 
-       var userService = context.getBean(UserService.class);
-
-        userService.createUser("Alice");
-        userService.createUser("Bob");
-
-        // Получение всех пользователей
-        List<User> users = userService.getAllUsers();
-        System.out.println("Users: " + users);
-
-        // Получение пользователя по ID
-        if (!users.isEmpty()) {
-            User user = userService.getUser(users.get(0).id());
-            System.out.println("Found user: " + user);
-
-            // Удаление пользователя
-            userService.deleteUser(users.get(0).id());
-            System.out.println("Users after deletion: " + userService.getAllUsers());
-        }
-        context.close();
+    @Bean
+    CommandLineRunner commandLineRunner (UserService userService) {
+        return args -> {
+            userService.createUser(new User(null, "user1"));
+            userService.createUser(new User(null, "user2"));
+            userService.getAllUsers().forEach(System.out::println);
+        };
     }
 
 }

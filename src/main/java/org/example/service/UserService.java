@@ -1,32 +1,22 @@
 package org.example.service;
 
+
 import org.example.model.User;
-import org.example.repository.UserDao;
+import org.example.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserService {
-    private final UserDao userDao;
-
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    private final UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
-
-    public void createUser(String username) {
-        userDao.save(new User(null, username));
-    }
-
-    public User getUser(Long id) {
-        return userDao.findById(id).orElseThrow();
-    }
-
     public List<User> getAllUsers() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
-
-    public void deleteUser(Long id) {
-        userDao.delete(id);
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 }
