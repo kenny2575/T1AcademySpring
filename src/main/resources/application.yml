@@ -4,3 +4,9 @@ spring:
     username: "GodOmen"
     password: "GodOmen"
     driver-class-name: "org.postgresql.Driver"
+  jpa:
+     hibernate:
+       ddl-auto: validate  # Мы используем Flyway, поэтому схема проверяется, но не создаётся
+     show-sql: true
+     flyway:
+       enabled: true  # Включаем миграции
