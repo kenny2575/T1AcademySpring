@@ -2,7 +2,9 @@ package org.example;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.enums.ProductType;
 import org.example.model.User;
+import org.example.service.ProductService;
 import org.example.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,17 +19,18 @@ public class Main {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner (UserService userService) {
+    CommandLineRunner commandLineRunner (UserService userService, ProductService productService) {
         return args -> {
-            var user1 = new User(null, "user1");
-            var user2 = new User(null, "user2");
-            userService.createUser(user1);
-            userService.createUser(user2);
-            userService.getAllUsers().forEach(x -> log.info(x.toString()));
+            User user1 = userService.createUser(new User("Alice"));
+            User user2 = userService.createUser(new User("Bob"));
 
-            var newUser = userService.getUser(42L);
+            productService.createProduct(user1.getId(), ProductType.CARD);
+            productService.createProduct(user1.getId(), ProductType.ACCOUNT);
+            productService.createProduct(user2.getId(), ProductType.CARD);
 
-            log.info("Name = {}",  newUser.getId());
+            System.out.println("Products for Alice: " + productService.getProductsByUserId(user1.getId()));
+            System.out.println("Products for Bob: " + productService.getProductsByUserId(user2.getId()));
+
         };
     }
 
