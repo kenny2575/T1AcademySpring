@@ -1,37 +1,37 @@
 package org.example;
 
 
-import org.example.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.example.enums.ProductType;
 import org.example.model.User;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.example.service.ProductService;
+import org.example.service.UserService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
-@ComponentScan
+@Slf4j
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-       AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        SpringApplication.run(Main.class, args);
+    }
 
-       var userService = context.getBean(UserService.class);
+    @Bean
+    CommandLineRunner commandLineRunner (UserService userService, ProductService productService) {
+        return args -> {
+            User user1 = userService.createUser(new User("Alice"));
+            User user2 = userService.createUser(new User("Bob"));
 
-        userService.createUser("Alice");
-        userService.createUser("Bob");
+            productService.createProduct(user1.getId(), ProductType.CARD);
+            productService.createProduct(user1.getId(), ProductType.ACCOUNT);
+            productService.createProduct(user2.getId(), ProductType.CARD);
 
-        // Получение всех пользователей
-        List<User> users = userService.getAllUsers();
-        System.out.println("Users: " + users);
+            System.out.println("Products for Alice: " + productService.getProductsByUserId(user1.getId()));
+            System.out.println("Products for Bob: " + productService.getProductsByUserId(user2.getId()));
 
-        // Получение пользователя по ID
-        if (!users.isEmpty()) {
-            User user = userService.getUser(users.get(0).id());
-            System.out.println("Found user: " + user);
-
-            // Удаление пользователя
-            userService.deleteUser(users.get(0).id());
-            System.out.println("Users after deletion: " + userService.getAllUsers());
-        }
-        context.close();
+        };
     }
 
 }
