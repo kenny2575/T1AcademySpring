@@ -1,37 +1,34 @@
 package org.example;
 
 
-import org.example.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.example.model.User;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
+import org.example.service.UserService;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import java.util.List;
-
-@ComponentScan
+@Slf4j
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
-       AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        SpringApplication.run(Main.class, args);
+    }
 
-       var userService = context.getBean(UserService.class);
+    @Bean
+    CommandLineRunner commandLineRunner (UserService userService) {
+        return args -> {
+            var user1 = new User(null, "user1");
+            var user2 = new User(null, "user2");
+            userService.createUser(user1);
+            userService.createUser(user2);
+            userService.getAllUsers().forEach(x -> log.info(x.toString()));
 
-        userService.createUser("Alice");
-        userService.createUser("Bob");
+            var newUser = userService.getUser(42L);
 
-        // Получение всех пользователей
-        List<User> users = userService.getAllUsers();
-        System.out.println("Users: " + users);
-
-        // Получение пользователя по ID
-        if (!users.isEmpty()) {
-            User user = userService.getUser(users.get(0).id());
-            System.out.println("Found user: " + user);
-
-            // Удаление пользователя
-            userService.deleteUser(users.get(0).id());
-            System.out.println("Users after deletion: " + userService.getAllUsers());
-        }
-        context.close();
+            log.info("Name = {}",  newUser.getId());
+        };
     }
 
 }
