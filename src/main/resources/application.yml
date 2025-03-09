@@ -1,12 +1,14 @@
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/Study_DB"
-    username: "GodOmen"
-    password: "GodOmen"
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    username: "admin"
+    password: "admin"
     driver-class-name: "org.postgresql.Driver"
   jpa:
      hibernate:
-       ddl-auto: validate  # Мы используем Flyway, поэтому схема проверяется, но не создаётся
+       ddl-auto: update
      show-sql: true
-     flyway:
-       enabled: true  # Включаем миграции
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
+

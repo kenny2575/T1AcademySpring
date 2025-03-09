@@ -16,6 +16,7 @@
         <spring.context.version>6.2.1</spring.context.version>
         <jackson.dataformat.yml.version>2.16.1</jackson.dataformat.yml.version>
         <spring.starter.data.jpa>3.2.5</spring.starter.data.jpa>
+        <liquibase.version>4.31.1</liquibase.version>
     </properties>
 
     <dependencies>
@@ -42,10 +43,11 @@
             <version>${spring.starter.data.jpa}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-            <version>10.15.2</version>
+        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
 
 
