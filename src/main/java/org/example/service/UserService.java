@@ -12,13 +12,16 @@ import java.util.List;
 
 public class UserService {
     private final UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Transactional
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
     @Transactional
     public void createUser(User user) {
         userRepository.save(user);
