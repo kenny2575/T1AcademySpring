@@ -16,20 +16,6 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner (UserService userService) {
-        return args -> {
-            var user1 = new User(null, "user1");
-            var user2 = new User(null, "user2");
-            userService.createUser(user1);
-            userService.createUser(user2);
-            userService.getAllUsers().forEach(x -> log.info(x.toString()));
-
-            var newUser = userService.getUser(42L);
-
-            log.info("Name = {}",  newUser.getId());
-        };
-    }
 
 }
 
