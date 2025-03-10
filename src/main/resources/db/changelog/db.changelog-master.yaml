@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include: 
       file: classpath:/db/changelog/changesets/001-create-users.yaml
+  - include:
+      file: classpath:/db/changelog/changesets/002-create-products.yaml
