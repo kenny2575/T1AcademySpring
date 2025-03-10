@@ -1,10 +1,19 @@
 package org.example.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.example.enums.ProductType;
 
-@Entity
+import java.math.BigDecimal;
+
+
 @Table(name = "products")
+@Entity
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +27,11 @@ public class Product {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public Product() {}
+    @Column(name = "account_balance")
+    private BigDecimal accountBalance;
 
-    public Product(ProductType productType, User user) {
-        this.productType = productType;
-        this.user = user;
-    }
+    @Column(name = "account_number")
+    private String account;
     
 }
 
