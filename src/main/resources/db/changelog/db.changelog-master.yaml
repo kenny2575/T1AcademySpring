@@ -3,3 +3,7 @@ databaseChangeLog:
       file: classpath:/db/changelog/changesets/001-create-users.yaml
   - include:
       file: classpath:/db/changelog/changesets/002-create-products.yaml
+  - include:
+      file: classpath:/db/changelog/changesets/003-migrate-initial-data.yaml
+  - include:
+      file: classpath:/db/changelog/changesets/004-migrate-products.yaml
