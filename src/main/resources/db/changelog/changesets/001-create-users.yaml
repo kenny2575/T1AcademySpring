@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create_user-table
+      author: nrr
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: serial
+              - column:
+                  name: username
+                  type: text
