@@ -19,14 +19,6 @@ public class CoreController {
 
     private final ProductService productService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        log.info("call GET all products");
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(productService.getProducts());
-    }
-
     @GetMapping("/client/{id}")
     public ResponseEntity<List<Product>> getProductByClientId(
             @PathVariable("id") Long id

@@ -1,9 +1,7 @@
 package com.example.core.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import com.example.core.enums.ProductType;
 
 import java.math.BigDecimal;
@@ -12,6 +10,8 @@ import java.math.BigDecimal;
 @Table(name = "products")
 @Entity
 @ToString
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
