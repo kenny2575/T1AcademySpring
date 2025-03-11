@@ -17,7 +17,7 @@
     </parent>
 
     <modules>
-        <module>core</module>
+        <module>product</module>
         <module>payment</module>
     </modules>
 
