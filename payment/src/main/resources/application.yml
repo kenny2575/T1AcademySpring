@@ -1,0 +1,12 @@
+spring.application:
+  name: payment
+server:
+  port: 8081
+
+core-module:
+  rest-client-props:
+    url: "http://localhost:8086/product"
+    timeout: 30
+    services:
+      - get-product-by-client: "/client/{id}"
+      - post-payment: "/client/{userId}/product/{productId}"
