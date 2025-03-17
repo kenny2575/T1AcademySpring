@@ -10,3 +10,13 @@ core-module:
     services:
       - get-product-by-client: "/client/{id}"
       - post-payment: "/client/{userId}/product/{productId}"
+
+limits-module:
+  rest-client-props:
+    url: "http://localhost:8081/"
+    timeout: 30
+    services:
+      - get-limit: "/limit"
+      - set-hold: "/hold"
+      - confirm: "/confirm"
+      - reject: "/reject"

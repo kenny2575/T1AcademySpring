@@ -5,14 +5,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.ConstructorBinding;
 
 @Getter
-@ConfigurationProperties(prefix = "core-module")
-public class RestProperties {
-
+@ConfigurationProperties(prefix = "limit-module")
+public class LimitRestProperties {
     private final RestClientProps props;
 
     @ConstructorBinding
-    public RestProperties(RestClientProps restClientProps) {
-
+    public LimitRestProperties(RestClientProps restClientProps) {
         this.props = restClientProps;
     }
 }

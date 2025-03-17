@@ -1,6 +1,7 @@
 package com.example.payment.controller;
 
 
+import com.example.payment.dto.OperationResultDto;
 import com.example.payment.dto.ProductDto;
 import com.example.payment.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -27,12 +28,14 @@ public class PaymentController {
     }
 
     @PostMapping("/user/{userId}/products/{productId}")
-    public ResponseEntity<String> makePayment(
+    public ResponseEntity<OperationResultDto> makePayment(
             @PathVariable Long userId,
             @PathVariable Long productId,
             @RequestParam(value = "amount") BigDecimal amount
     ) {
-        return ResponseEntity.status(HttpStatus.OK).body(productService.makePayment(userId, productId, amount));
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(productService.makePayment(userId, productId, amount));
     }
 
 }
