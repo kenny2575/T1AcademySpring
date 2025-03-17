@@ -43,7 +43,7 @@ public class CoreController {
     public ResponseEntity<String> makePayment(
             @PathVariable Long userId,
             @PathVariable Long productId,
-            @RequestParam(value = "amount", required = true) BigDecimal amount
+            @RequestParam(value = "amount") BigDecimal amount
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(productService.makePayment(userId, productId, amount));
     }
